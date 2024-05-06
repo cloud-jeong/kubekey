@@ -113,6 +113,7 @@ type RegistryConfig struct {
 	NamespaceOverride  string               `yaml:"namespaceOverride" json:"namespaceOverride,omitempty"`
 	BridgeIP           string               `yaml:"bridgeIP" json:"bridgeIP,omitempty"`
 	Auths              runtime.RawExtension `yaml:"auths" json:"auths,omitempty"`
+	DataVolume         string               `yaml:"dataVolume" json:"dataVolume,omitempty"`
 }
 
 // KubeSphere defines the configuration information of the KubeSphere.

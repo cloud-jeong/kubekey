@@ -240,6 +240,10 @@ func (g *GenerateHarborConfig) Execute(runtime connector.Runtime) error {
 		registryDomain = host.GetName()
 	}
 
+	if g.KubeConf.Cluster.Registry.DataVolume == "" {
+		g.KubeConf.Cluster.Registry.DataVolume = "/mnt/registry"
+	}
+
 	templateAction := action.Template{
 		Template: harbor,
 		Dst:      "/opt/harbor/harbor.yml",
@@ -248,6 +252,7 @@ func (g *GenerateHarborConfig) Execute(runtime connector.Runtime) error {
 			"Certificate": fmt.Sprintf("%s.pem", g.KubeConf.Cluster.Registry.GetHost()),
 			"Key":         fmt.Sprintf("%s-key.pem", g.KubeConf.Cluster.Registry.GetHost()),
 			"Password":    templates.Password(g.KubeConf, g.KubeConf.Cluster.Registry.GetHost()),
+			"DataVolume":  g.KubeConf.Cluster.Registry.DataVolume,
 		},
 	}
 	templateAction.Init(nil, nil)

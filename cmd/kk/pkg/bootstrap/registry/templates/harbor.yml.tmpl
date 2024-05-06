@@ -53,7 +53,7 @@ database:
   conn_max_idle_time: 0
 
 # The default data volume
-data_volume: /mnt/registry
+data_volume: {{ .DataVolume }}
 
 # Harbor Storage settings by default is using /data dir on local filesystem
 # Uncomment storage_service setting If you want to using external storage
